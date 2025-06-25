@@ -1,1 +1,3 @@
-# Customers-Coffee-Expansion-using-SQL
+# EDA-Coffee-Expansion
+
+## Project Overview
