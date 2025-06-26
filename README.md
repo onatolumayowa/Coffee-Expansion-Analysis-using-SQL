@@ -219,7 +219,7 @@ After analyzing the data, the recommended top three cities for new store opening
  
   ### References
 
-  1. [Zero Analyst](https://m.youtube.com/watch?v=ZZZEP4ZRnDaU&list=PLF2u7Zn-dlxbeais0AkBxUqdWM1hnSJDS&index=14&pp=iAQB)
+  1. [Zero Analyst](https://m.youtube.com/watch?v=ZZZEP4ZRnDaU&list=PLF2u7Zn-dlxbeaisOAkBxUqdWM1hnSJDS&index=14&pp=iAQB)
 
 
 
