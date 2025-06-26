@@ -16,7 +16,7 @@ This project analyzes the sales data of Monday Coffee, a company that has been s
 
 ### Data Sources
 
-Data: The primary dataset used for this analysis is the "coffee_data.csv" file, containing detailed information about the population, estimated-rent, and sales performance of each city.
+Data: The dataset used for this analysis is the "city.csv", "customers.csv", "sales.csv", "products.cvs" file containing detailed information about the population, estimated-rent, and sales performance of each city.
 
 ### Tools
 
