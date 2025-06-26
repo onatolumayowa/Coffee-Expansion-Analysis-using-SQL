@@ -219,7 +219,8 @@ After analyzing the data, the recommended top three cities for new store opening
  
   ### References
 
-  1. [mosh](https://www.youtube.com/watch?v=t60b_MplxAA&list=PLOghUv2IDLKHKlkQNuzN8SPLYuVhhLlpa)
+  1. [sql by mosh](https://www.youtube.com/watch?v=t60b_MplxAA&list=PLOghUv2IDLKHKlkQNuzN8SPLYuVhhLlpa)
+  2. [zero analyst](https://www.youtube.com/watch?v=ZZEP4ZRnDaU&list=PLF2u7Zn-dIxbeais0AkBxUqdWM1hnSJDS&index=9)
 
 
 
