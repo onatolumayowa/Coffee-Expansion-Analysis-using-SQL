@@ -86,7 +86,8 @@ ORDER BY 2 DESC;
 ```
 - Provide a list of cities along with their populations and estimated coffee consumers.
 ```sql
-SELECT ci.city_name, ROUND((population * 0.25)/1000000, 2) AS coffee_consumers, COUNT(DISTINCT cu.customer_id) AS unique_customers
+SELECT ci.city_name, 
+		COUNT(DISTINCT cu.customer_id) AS unique_customers
 FROM city ci
 JOIN customers cu USING(city_id)
 JOIN sales s ON cu.customer_id = s.customer_id
@@ -186,6 +187,39 @@ FROM city_rent cr
 JOIN city_table ct ON cr.city_name = ct.city_name
 ORDER BY 2 DESC;
 ```
+
+### Findings
+
+The analysis results are summarized as follows:
+1. City_name Pune is the best performing category in terms of sales and revenue.
+2. Highest number of customers by city_name is Delhi, which is 69.
+3. Also Delhi have the Highest estimated coffee consumers at 7.7 million.
+
+### Recommendations
+
+After analyzing the data, the recommended top three cities for new store openings are:
+
+- Pune
+
+  - Average rent per customer is very low.
+  - Highest total revenue.
+  - Average sales per customer is also high.
+    
+- Delhi
+
+  - Highest estimated coffee consumers at 7.7 million.
+  - It has high total number of customers, which is 68.
+  - Average rent per customer is 330 (still under 500).
+    
+- Jaipur
+
+  - Highest number of customers, which is 69.
+  - Average rent per customer is very low at 156.
+  - Average sales per customer is better at 11.6k.
+ 
+  ### References
+
+  1. [Zero Analyst](https://m.youtube.com/watch?v=ZZZEP4ZRnDaU&list=PLF2u7Zn-dlxbeais0AkBxUqdWM1hnSJDS&index=14&pp=iAQB)
 
 
 
