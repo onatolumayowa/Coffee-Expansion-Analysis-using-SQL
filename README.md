@@ -63,7 +63,8 @@ Include some interesting code I worked with
 
 - How many people in each city are estimated to consume coffee, given that 25% of the population does?
 ```sql
-SELECT city_name, ROUND((population *0.25)/1000000, 2) AS coffee_consumers_in_millions, city_rank
+SELECT city_name, ROUND((population *0.25)/1000000, 2) AS coffee_consumers_in_millions,
+	city_rank
 FROM city 
 ORDER BY 2 DESC;
 ```
@@ -87,8 +88,9 @@ ORDER BY 2 DESC;
 ```
 - What is the average sales amount per customer in each city?
 ```sql
-SELECT ci.city_name, SUM(s.total) AS total_revenue, COUNT(DISTINCT s.customer_id) AS total_customers,
-		ROUND(SUM(s.total)/COUNT(DISTINCT s.customer_id), 2)AS avg_sale_per_customers
+SELECT ci.city_name, SUM(s.total) AS total_revenue,
+	COUNT(DISTINCT s.customer_id) AS total_customers,
+	ROUND(SUM(s.total)/COUNT(DISTINCT s.customer_id), 2)AS avg_sale_per_customers
 FROM sales s
 JOIN customers c USING(customer_id)
 JOIN city ci ON ci.city_id = c.city_id
@@ -98,7 +100,7 @@ ORDER BY 2 DESC;
 - Provide a list of cities along with their populations and estimated coffee consumers.
 ```sql
 SELECT ci.city_name, 
-		COUNT(DISTINCT cu.customer_id) AS unique_customers
+	COUNT(DISTINCT cu.customer_id) AS unique_customers
 FROM city ci
 JOIN customers cu USING(city_id)
 JOIN sales s ON cu.customer_id = s.customer_id
@@ -109,7 +111,7 @@ GROUP BY 1, 2;
 WITH CTE_Example AS
 (
 SELECT ci.city_name, p.product_name, COUNT(s.sale_id) AS total_orders,
-		DENSE_RANK() OVER(PARTITION BY ci.city_name ORDER BY COUNT(s.sale_id) DESC) AS rank_no
+	DENSE_RANK() OVER(PARTITION BY ci.city_name ORDER BY COUNT(s.sale_id) DESC) AS rank_no
 FROM sales s
 JOIN products p USING(product_id)
 JOIN customers cu USING(customer_id)
@@ -134,7 +136,7 @@ GROUP BY 1;
 WITH city_table AS
 (
 SELECT ci.city_name, COUNT(DISTINCT s.customer_id) AS total_customers,
-		ROUND(SUM(s.total)/COUNT(DISTINCT s.customer_id), 2)AS avg_sale_per_customers
+	ROUND(SUM(s.total)/COUNT(DISTINCT s.customer_id), 2)AS avg_sale_per_customers
 FROM sales s
 JOIN customers c USING(customer_id)
 JOIN city ci ON ci.city_id = c.city_id
@@ -147,7 +149,7 @@ SELECT city_name, estimated_rent
 FROM city
 )
 SELECT cr.city_name, cr.estimated_rent, ct.total_customers, ct.avg_sale_per_customers,
-		ROUND(cr.estimated_rent/ct.total_customers, 2) AS avg_rent_per_customers
+	ROUND(cr.estimated_rent/ct.total_customers, 2) AS avg_rent_per_customers
 FROM city_rent cr
 JOIN city_table ct ON cr.city_name = ct.city_name
 ORDER BY 4 DESC;
@@ -156,7 +158,8 @@ ORDER BY 4 DESC;
 ```sql
 WITH monthly_sales AS
 (
-SELECT ci.city_name, Month(sale_date) AS month, Year(sale_date) AS year, SUM(s.total) AS total_sale
+SELECT ci.city_name, Month(sale_date) AS month, Year(sale_date) AS year,
+	SUM(s.total) AS total_sale
 FROM sales s
 JOIN customers cu USING(customer_id)
 JOIN city ci ON cu.city_id = ci.city_id
@@ -166,11 +169,11 @@ ORDER BY 1, 3, 2
 growth_ratio AS
 (
 SELECT city_name, month, year, total_sale AS current_month_sale, 
-		LAG(total_sale, 1) OVER(PARTITION BY city_name ORDER BY year, month) AS last_month_sale
+	LAG(total_sale, 1) OVER(PARTITION BY city_name ORDER BY year, month) AS last_month_sale
 FROM monthly_sales
 )
 SELECT city_name, month, year, current_month_sale, last_month_sale, 
-		ROUND((current_month_sale-last_month_sale)/last_month_sale * 100, 2) AS growth_ratio
+	ROUND((current_month_sale-last_month_sale)/last_month_sale * 100, 2) AS growth_ratio
 FROM growth_ratio
 WHERE last_month_sale IS NOT NULL;
 ```
@@ -178,8 +181,9 @@ WHERE last_month_sale IS NOT NULL;
 ```sql
 WITH city_table AS
 (
-SELECT ci.city_name, SUM(s.total) AS total_revenue, COUNT(DISTINCT s.customer_id) AS total_customers,
-		ROUND(SUM(s.total)/COUNT(DISTINCT s.customer_id), 2)AS avg_sale_per_customers
+SELECT ci.city_name, SUM(s.total) AS total_revenue,
+	COUNT(DISTINCT s.customer_id) AS total_customers,
+	ROUND(SUM(s.total)/COUNT(DISTINCT s.customer_id), 2)AS avg_sale_per_customers
 FROM sales s
 JOIN customers c USING(customer_id)
 JOIN city ci ON ci.city_id = c.city_id
@@ -192,8 +196,8 @@ SELECT city_name, estimated_rent, ROUND((population * 0.25)/1000000, 2) AS estim
 FROM city
 )
 SELECT cr.city_name, total_revenue, cr.estimated_rent AS total_rent, ct.total_customers,
-		estimated_coffee_consumer, ct.avg_sale_per_customers,
-		ROUND(cr.estimated_rent/ct.total_customers, 2) AS avg_rent_per_customers
+	estimated_coffee_consumer, ct.avg_sale_per_customers,
+	ROUND(cr.estimated_rent/ct.total_customers, 2) AS avg_rent_per_customers
 FROM city_rent cr
 JOIN city_table ct ON cr.city_name = ct.city_name
 ORDER BY 2 DESC;
@@ -202,9 +206,9 @@ ORDER BY 2 DESC;
 ### Findings
 
 The analysis results are summarized as follows:
-1. City_name Pune is the best performing category in terms of sales and revenue.
-2. Highest number of customers by city_name is Delhi, which is 69.
-3. Also Delhi have the Highest estimated coffee consumers at 7.7 million.
+1. At the end of the analysis, I observed that Pune is the best performing category in terms of sales and revenue.
+2. At the end of the analysis, I observed that the Highest number of customers by city_name is Delhi, which is 69.
+3. At the end of the analysis, I also observed that Delhi have the Highest estimated coffee consumers at 7.7 million.
 
 ### Recommendations
 
