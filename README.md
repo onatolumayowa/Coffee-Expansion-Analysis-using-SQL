@@ -209,6 +209,7 @@ The analysis results are summarized as follows:
 1. At the end of the analysis, I observed that Pune is the best performing category in terms of sales and revenue.
 2. At the end of the analysis, I observed that the Highest number of customers by city_name is Delhi, which is 69.
 3. At the end of the analysis, I also observed that Delhi have the Highest estimated coffee consumers at 7.7 million.
+4. At the end of the analysis, I observed that the year 2023 is the best performing category in terms of sales and revenue. 
 
 ### Recommendations
 
